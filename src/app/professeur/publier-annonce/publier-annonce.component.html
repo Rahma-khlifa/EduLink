@@ -1,0 +1,26 @@
+<!-- src/app/professeur/publier-annonce/publier-annonce.component.html -->
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Publier une annonce</h6>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="publierAnnonce()">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="titre" [(ngModel)]="annonce.titre" name="titre" required>
+          </div>
+          <div class="mb-3">
+            <label for="contenu" class="form-label">Contenu</label>
+            <textarea class="form-control" id="contenu" [(ngModel)]="annonce.contenu" name="contenu" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="datePublication" class="form-label">Date de publication</label>
+            <input type="date" class="form-control" id="datePublication" [(ngModel)]="annonce.datePublication" name="datePublication" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Publier</button>
+          <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+        </form>
+      </div>
+    </div>
+  </div>

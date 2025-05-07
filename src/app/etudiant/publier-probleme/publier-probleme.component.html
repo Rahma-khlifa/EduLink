@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Publier un problème</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="titre"
+        [(ngModel)]="probleme.titre"
+        name="titre"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        [(ngModel)]="probleme.description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!probleme.titre || !probleme.description">
+      Publier
+    </button>
+  </form>
+</div>

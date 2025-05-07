@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { EtudiantModule } from './etudiant/etudiant.module';
+
+const routes: Routes = [
+  { path: 'etudiant', loadChildren: () => import('./etudiant/etudiant.module').then(m => m.EtudiantModule) },
+  { path: '', redirectTo: '/etudiant', pathMatch: 'full' }, // Redirige vers la page d'accueil étudiant
+  { path: '**', redirectTo: '/etudiant' } // Route par défaut
+];
 
 @NgModule({
   declarations: [
@@ -10,11 +18,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    EtudiantModule // Importez le module étudiant
   ],
-  providers: [
-    provideClientHydration(withEventReplay())
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

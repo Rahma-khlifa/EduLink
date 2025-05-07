@@ -1,0 +1,22 @@
+<!-- src/app/professeur/liste-cours/liste-cours.component.html -->
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Liste de mes cours</h6>
+      </div>
+      <div class="card-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <div *ngIf="cours.length === 0" class="alert alert-info">Aucun cours publié.</div>
+        <div *ngFor="let cours of cours" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ cours.titre }}</h5>
+            <p class="card-text">{{ cours.contenu }}</p>
+            <p class="card-text"><strong>Auteur :</strong> {{ cours.auteur?.nom || 'Inconnu' }}</p>
+            <p *ngIf="cours.fichierPdf" class="card-text">
+              <a href="{{ cours.fichierPdf }}" target="_blank" class="btn btn-sm btn-primary">Télécharger PDF</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

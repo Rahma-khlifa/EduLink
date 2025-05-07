@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Liste des problèmes</h2>
+  <div *ngIf="problemes.length === 0" class="alert alert-info">
+    Aucun problème trouvé.
+  </div>
+  <div *ngFor="let probleme of problemes" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ probleme.titre }}</h5>
+      <p class="card-text">{{ probleme.description }}</p>
+      <button (click)="toggleReponses(probleme.id)" class="btn btn-link">
+        {{ showReponses[probleme.id] ? 'Masquer' : 'Afficher' }} les réponses
+      </button>
+      <div *ngIf="showReponses[probleme.id]">
+        <h6>Réponses :</h6>
+        <ul class="list-group">
+          <li *ngFor="let reponse of probleme.reponses" class="list-group-item">
+            <p>{{ reponse.contenu }}</p>
+            <span *ngIf="reponse.professeurId" class="badge bg-primary ms-2">Prof. #{{ reponse.professeurId }}</span>
+            <span *ngIf="reponse.etudiantId" class="badge bg-secondary ms-2">Étudiant #{{ reponse.etudiantId }}</span>
+          </li>
+        </ul>
+        <form (ngSubmit)="ajouterReponse(probleme.id)">
+          <textarea class="form-control mb-2" [(ngModel)]="reponseContenu" name="reponseContenu" placeholder="Votre réponse"></textarea>
+          <button type="submit" class="btn btn-primary">Ajouter une réponse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

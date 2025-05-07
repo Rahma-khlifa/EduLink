@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+/* Appliquer une couleur de fond bleu ciel à tout le site */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #e0f7fa; /* Bleu ciel */
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Assurer que les conteneurs principaux respectent le fond */
+  .container-fluid, .container {
+    background-color: transparent; /* Éviter que les conteneurs écrasent le fond */
+  }

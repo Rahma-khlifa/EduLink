@@ -1,0 +1,20 @@
+<!-- src/app/etudiant/consulter-annonces/consulter-annonces.component.html -->
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Consulter les annonces</h6>
+      </div>
+      <div class="card-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <div *ngIf="annonces.length === 0" class="alert alert-info">Aucune annonce.</div>
+        <div *ngFor="let annonce of annonces" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ annonce.titre }}</h5>
+            <p class="card-text">{{ annonce.contenu }}</p>
+            <p class="card-text"><strong>Publié le :</strong> {{ annonce.datePublication | date:'mediumDate' }}</p>
+            <p class="card-text"><strong>Par :</strong> {{ annonce.professeur?.nom || 'Inconnu' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
