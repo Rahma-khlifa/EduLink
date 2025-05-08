@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
     // Vérification sécurisée de localStorage
     if (typeof window !== 'undefined' && localStorage.getItem('isLoggedIn') === 'true') {
       const role = localStorage.getItem('role');
-      const userId = parseInt(localStorage.getItem('userId') || '0', 10);
       if (role === 'etudiant') {
-        this.router.navigate(['/etudiant', userId]);
+        this.router.navigate(['/etudiant']);
       } else if (role === 'professeur') {
-        this.router.navigate(['/professeur', userId]);
+        this.router.navigate(['/professeur']);
       }
     }
   }
@@ -95,13 +94,12 @@ export class LoginComponent implements OnInit {
           this.successMessage = res.message;
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('token', res.token);
-          const userId = parseInt(res.id, 10);
-          this.userService.setUser(userId, role);
+          this.userService.setUser(parseInt(res.id, 10), role);
           
           if (role === 'etudiant') {
-            this.router.navigate(['/etudiant', userId]);
+            this.router.navigate(['/etudiant']);
           } else {
-            this.router.navigate(['/professeur', userId]);
+            this.router.navigate(['/professeur']);
           }
         },
         error => {

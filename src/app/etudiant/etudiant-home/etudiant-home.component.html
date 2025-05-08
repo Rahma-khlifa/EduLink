@@ -3,72 +3,74 @@
   <div class="logout-container">
     <button (click)="logout()" class="btn-logout">Déconnexion</button>
   </div>
-  <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold text-primary">Bienvenue, Étudiant !</h1>
-    <p class="lead text-muted">Explorez vos outils pédagogiques et collaborez avec vos professeurs et camarades.</p>
-  </div>
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Ajouter un cours</h5>
-            <p class="card-text text-muted">Créez un nouveau cours avec un titre, un contenu et un fichier associé.</p>
-            <a routerLink="/etudiant/ajouter-cours" class="btn btn-primary btn-lg mt-3">Démarrer</a>
+
+  <!-- Afficher le contenu de la page d'accueil uniquement si aucune sous-route n'est active -->
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold text-primary">Bienvenue, Étudiant !</h1>
+      <p class="lead text-muted">Explorez vos outils pédagogiques et collaborez avec vos professeurs et camarades.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Ajouter un cours</h5>
+              <p class="card-text text-muted">Créez un nouveau cours avec un titre, un contenu et un fichier associé.</p>
+              <a routerLink="/etudiant/ajouter-cours" class="btn btn-primary btn-lg mt-3">Démarrer</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-bullhorn fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Consulter les annonces</h5>
-            <p class="card-text text-muted">Découvrez les dernières annonces publiées par vos professeurs.</p>
-            <a routerLink="/etudiant/consulter-annonces" class="btn btn-primary btn-lg mt-3">Voir</a>
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-bullhorn fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Consulter les annonces</h5>
+              <p class="card-text text-muted">Découvrez les dernières annonces publiées par vos professeurs.</p>
+              <a routerLink="/etudiant/consulter-annonces" class="btn btn-primary btn-lg mt-3">Voir</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Consulter les cours</h5>
-            <p class="card-text text-muted">Accédez à la liste des cours disponibles pour votre apprentissage.</p>
-            <a routerLink="/etudiant/consulter-cours" class="btn btn-primary btn-lg mt-3">Explorer</a>
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Consulter les cours</h5>
+              <p class="card-text text-muted">Accédez à la liste des cours disponibles pour votre apprentissage.</p>
+              <a routerLink="/etudiant/consulter-cours" class="btn btn-primary btn-lg mt-3">Explorer</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-question-circle fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Consulter les problèmes</h5>
-            <p class="card-text text-muted">Parcourez les problèmes soumis par d'autres étudiants.</p>
-            <a routerLink="/etudiant/consulter-problemes" class="btn btn-primary btn-lg mt-3">Consulter</a>
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-question-circle fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Consulter les problèmes</h5>
+              <p class="card-text text-muted">Parcourez les problèmes soumis par d'autres étudiants.</p>
+              <a routerLink="/etudiant/consulter-problemes" class="btn btn-primary btn-lg mt-3">Consulter</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-edit fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Publier un problème</h5>
-            <p class="card-text text-muted">Partagez un problème pour lancer une discussion avec vos pairs.</p>
-            <a routerLink="/etudiant/publier-probleme" class="btn btn-primary btn-lg mt-3">Publier</a>
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-edit fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Publier un problème</h5>
+              <p class="card-text text-muted">Partagez un problème pour lancer une discussion avec vos pairs.</p>
+              <a routerLink="/etudiant/publier-probleme" class="btn btn-primary btn-lg mt-3">Publier</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 animate-card">
-          <div class="card-body text-center">
-            <i class="fas fa-comment-dots fa-3x text-primary mb-3"></i>
-            <h5 class="card-title fw-bold">Répondre à un problème</h5>
-            <p class="card-text text-muted">Contribuez aux discussions en répondant aux problèmes existants.</p>
-            <a routerLink="/etudiant/repondre-probleme" class="btn btn-primary btn-lg mt-3">Participer</a>
+        <div class="col-md-4 col-sm-6">
+          <div class="card shadow-sm h-100 border-0 animate-card">
+            <div class="card-body text-center">
+              <i class="fas fa-comment-dots fa-3x text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">Répondre à un problème</h5>
+              <p class="card-text text-muted">Contribuez aux discussions en répondant aux problèmes existants.</p>
+              <a routerLink="/etudiant/consulter-problemes" class="btn btn-primary btn-lg mt-3">Participer</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
