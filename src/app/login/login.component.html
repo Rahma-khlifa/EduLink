@@ -1,0 +1,89 @@
+<div class="container">
+    <!-- Messages de succès et d'erreur -->
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Boutons pour afficher les formulaires -->
+    <div class="button-group">
+      <button (click)="toggleSignInEtudiant()">Sign In Étudiant</button>
+      <button (click)="toggleSignUpEtudiant()">Sign Up Étudiant</button>
+      <button (click)="toggleSignInProfesseur()">Sign In Professeur</button>
+      <button (click)="toggleSignUpProfesseur()">Sign Up Professeur</button>
+    </div>
+  
+    <!-- Formulaire Sign In Étudiant -->
+    <div *ngIf="showSignInEtudiant" class="form-container">
+      <h2>Sign In Étudiant</h2>
+      <form #signInEtudiantForm="ngForm" (ngSubmit)="onSignIn(signInEtudiantForm, 'etudiant')">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" ngModel required>
+        </div>
+        <button type="submit" [disabled]="!signInEtudiantForm.valid">Se connecter</button>
+      </form>
+    </div>
+  
+    <!-- Formulaire Sign Up Étudiant -->
+    <div *ngIf="showSignUpEtudiant" class="form-container">
+      <h2>Sign Up Étudiant</h2>
+      <form #signUpEtudiantForm="ngForm" (ngSubmit)="onSignUp(signUpEtudiantForm, 'etudiant')">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" ngModel required>
+        </div>
+        <button type="submit" [disabled]="!signUpEtudiantForm.valid">S'inscrire</button>
+      </form>
+    </div>
+  
+    <!-- Formulaire Sign In Professeur -->
+    <div *ngIf="showSignInProfesseur" class="form-container">
+      <h2>Sign In Professeur</h2>
+      <form #signInProfesseurForm="ngForm" (ngSubmit)="onSignIn(signInProfesseurForm, 'professeur')">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" ngModel required>
+        </div>
+        <button type="submit" [disabled]="!signInProfesseurForm.valid">Se connecter</button>
+      </form>
+    </div>
+  
+    <!-- Formulaire Sign Up Professeur -->
+    <div *ngIf="showSignUpProfesseur" class="form-container">
+      <h2>Sign Up Professeur</h2>
+      <form #signUpProfesseurForm="ngForm" (ngSubmit)="onSignUp(signUpProfesseurForm, 'professeur')">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" ngModel required>
+        </div>
+        <button type="submit" [disabled]="!signUpProfesseurForm.valid">S'inscrire</button>
+      </form>
+    </div>
+  </div>

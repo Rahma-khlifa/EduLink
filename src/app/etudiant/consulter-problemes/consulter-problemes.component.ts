@@ -4,7 +4,7 @@ import { Probleme } from '../../shared/models/probleme.model';
 
 @Component({
   selector: 'app-consulter-problemes',
-  standalone : false ,
+  standalone: false,
   templateUrl: './consulter-problemes.component.html',
   styleUrls: ['./consulter-problemes.component.css']
 })
@@ -16,7 +16,7 @@ export class ConsulterProblemesComponent implements OnInit {
   constructor(private etudiantService: EtudiantService) {}
 
   ngOnInit(): void {
-    this.etudiantService.getProblemesByEtudiant().subscribe({
+    this.etudiantService.getAllProblemes().subscribe({
       next: (problemes) => {
         this.problemes = problemes;
       },

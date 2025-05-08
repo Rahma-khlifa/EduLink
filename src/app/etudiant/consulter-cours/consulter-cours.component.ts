@@ -1,4 +1,3 @@
-// src/app/etudiant/consulter-cours/consulter-cours.component.ts
 import { Component, OnInit } from '@angular/core';
 import { EtudiantService } from '../../shared/services/etudiant-service.service';
 import { Cours } from '../../shared/models/cours.model';
@@ -15,13 +14,30 @@ export class ConsulterCoursComponent implements OnInit {
   constructor(private etudiantService: EtudiantService) {}
 
   ngOnInit() {
+    console.log('Appel à getAllCours avec URL : ', `${this.etudiantService['baseUrl']}/cours`);
     this.etudiantService.getAllCours().subscribe({
       next: (data) => {
         this.cours = data;
+        console.log('Cours récupérés : ', this.cours);
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Erreur lors du chargement des cours.';
+        console.error('Erreur détaillée : ', err);
       }
     });
+  }
+
+  downloadPdf(cours: Cours) {
+    if (cours.fichierPdf) {
+      const blob = new Blob([cours.fichierPdf], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `cours_${cours.id}.pdf`;
+      link.click();
+      window.URL.revokeObjectURL(url);
+    } else {
+      alert('Aucun fichier PDF disponible.');
+    }
   }
 }

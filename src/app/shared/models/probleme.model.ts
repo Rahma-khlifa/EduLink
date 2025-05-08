@@ -1,4 +1,5 @@
 // src/app/shared/models/probleme.model.ts
+import { Etudiant } from './etudiant.model';
 import { Reponse } from './reponse.model';
 
 
@@ -7,6 +8,7 @@ export class Probleme {
   titre: string;
   description: string;
   etudiantId: number;
+  etudiant?: Etudiant;
   reponses?: Reponse[];
 
   constructor(data: Partial<Probleme> = {}) {
@@ -14,6 +16,7 @@ export class Probleme {
     this.titre = data.titre || '';
     this.description = data.description || '';
     this.etudiantId = data.etudiantId || 0;
+    this.etudiant = data.etudiant ? new Etudiant(data.etudiant) : undefined;
     this.reponses = data.reponses || [];
   }
   hasReponses(): boolean {

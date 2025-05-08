@@ -1,33 +1,32 @@
-// src/app/professeur/publier-annonce/publier-annonce.component.ts
 import { Component } from '@angular/core';
-import { ProfService } from '../../shared/services/prof-service.service';
-import { Router } from '@angular/router';
 import { Annonce } from '../../shared/models/annonce.model';
+import { UserService } from '../../shared/services/user.service';
+import { ProfService } from '../../shared/services/prof-service.service';
 
 @Component({
   selector: 'app-publier-annonce',
-  standalone : false ,
-  templateUrl: './publier-annonce.component.html'
+  standalone: false,
+  templateUrl: './publier-annonce.component.html',
+  styleUrls: ['./publier-annonce.component.css']
 })
 export class PublierAnnonceComponent {
-  annonce = new Annonce();
-  errorMessage: string = '';
+  annonce: Annonce = new Annonce();
 
-  constructor(private profService: ProfService, private router: Router) {}
+  constructor(private profService: ProfService, private userService: UserService) {}
 
-  publierAnnonce() {
-    if (!this.annonce.isValid()) {
-      this.errorMessage = 'Le titre, le contenu et la date de publication sont requis.';
-      return;
-    }
-    this.annonce.professeurId = 1; // ID statique
-    this.profService.publierAnnonce(this.annonce).subscribe({
-      next: () => {
-        alert('Annonce publiée !');
-        this.router.navigate(['/professeur']);
-      },
-      error: (err) => {
-        this.errorMessage = err.error?.message || 'Erreur lors de la publication de l\'annonce.';
+  onSubmit(): void {
+    this.userService.getUserId().subscribe(userId => {
+      if (userId) {
+        this.profService.publierAnnonce(this.annonce.titre, this.annonce.contenu).subscribe({
+          next: () => {
+            alert('Annonce publiée avec succès !');
+            this.annonce = new Annonce();
+          },
+          error: (error) => {
+            console.error('Erreur lors de la publication de l\'annonce', error);
+            alert('Erreur lors de la publication de l\'annonce');
+          }
+        });
       }
     });
   }
