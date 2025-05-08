@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -10,7 +10,7 @@ import { UserService } from '../shared/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   showSignInEtudiant: boolean = false;
   showSignUpEtudiant: boolean = false;
   showSignInProfesseur: boolean = false;
@@ -23,6 +23,19 @@ export class LoginComponent {
     private userService: UserService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    // Vérification sécurisée de localStorage
+    if (typeof window !== 'undefined' && localStorage.getItem('isLoggedIn') === 'true') {
+      const role = localStorage.getItem('role');
+      const userId = parseInt(localStorage.getItem('userId') || '0', 10);
+      if (role === 'etudiant') {
+        this.router.navigate(['/etudiant', userId]);
+      } else if (role === 'professeur') {
+        this.router.navigate(['/professeur', userId]);
+      }
+    }
+  }
 
   toggleSignInEtudiant() {
     this.showSignInEtudiant = !this.showSignInEtudiant;
@@ -82,10 +95,9 @@ export class LoginComponent {
           this.successMessage = res.message;
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('token', res.token);
-          const userId = parseInt(res.id, 10); // Assure la conversion en nombre
-          this.userService.setUser(userId, role); // Stocke l'ID et le rôle
+          const userId = parseInt(res.id, 10);
+          this.userService.setUser(userId, role);
           
-          // Rediriger avec l'ID dans l'URL
           if (role === 'etudiant') {
             this.router.navigate(['/etudiant', userId]);
           } else {
