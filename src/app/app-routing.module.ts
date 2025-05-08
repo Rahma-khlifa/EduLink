@@ -1,3 +1,4 @@
+//app routing module
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConsulterAnnoncesComponent } from './etudiant/consulter-annonces/consulter-annonces.component';
