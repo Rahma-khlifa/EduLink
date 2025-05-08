@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
-import { EtudiantService } from '../../shared/services/etudiant-service.service';
+import { ProfService } from '../../shared/services/prof-service.service';
 
 @Component({
-  selector: 'app-etudiant-home',
+  selector: 'app-professeur-home',
   standalone: false,
-  templateUrl: './etudiant-home.component.html',
-  styleUrls: ['./etudiant-home.component.css']
+  templateUrl: './professeur-home.component.html',
+  styleUrls: ['./professeur-home.component.css']
 })
-export class EtudiantHomeComponent implements OnInit {
+export class ProfesseurHomeComponent implements OnInit {
   userId: number | null = null;
 
   constructor(
-    private etudiantService: EtudiantService,
+    private profService: ProfService,
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute
@@ -21,11 +21,11 @@ export class EtudiantHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['id'];
-    console.log('ID de l\'étudiant:', this.userId); // Pour débogage
+    console.log('ID du professeur:', this.userId); // Pour débogage
   }
 
   logout(): void {
-    this.etudiantService.logoutEtudiant().subscribe({
+    this.profService.logoutProfesseur().subscribe({
       next: () => {
         this.userService.clearUser();
         this.router.navigate(['/']);

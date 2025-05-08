@@ -1,18 +1,17 @@
-// src/app/shared/models/cours.ts
 import { Etudiant } from './etudiant.model';
 
 export class Cours {
   id?: number;
   titre: string;
   contenu: string;
-  fichierPdf?: string;
+  fichierPdf?: Uint8Array; // Changé de string à Uint8Array pour correspondre au byte[] du back-end
   auteur?: Etudiant;
 
   constructor(data: any = {}) {
     this.id = data.id;
     this.titre = data.titre || '';
     this.contenu = data.contenu || '';
-    this.fichierPdf = data.fichierPdf;
+    this.fichierPdf = data.fichierPdf ? new Uint8Array(data.fichierPdf) : undefined; // Convertir en Uint8Array si présent
     this.auteur = data.auteur ? new Etudiant(data.auteur) : undefined;
   }
 

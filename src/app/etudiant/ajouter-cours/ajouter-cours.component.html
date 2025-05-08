@@ -1,33 +1,38 @@
-<!-- src/app/etudiant/ajouter-cours/ajouter-cours.component.html -->
 <div class="container-fluid">
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Ajouter un cours</h6>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Ajouter un cours</h6>
+    </div>
+    <div class="card-body">
+      <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="successMessage = ''" aria-label="Close"></button>
       </div>
-      <div class="card-body">
-        <form (ngSubmit)="ajouterCours()">
-          <div class="mb-3">
-            <label for="titre" class="form-label">Titre</label>
-            <input type="text" class="form-control" id="titre" [(ngModel)]="cours.titre" name="titre" required>
-          </div>
-          <div class="mb-3">
-            <label for="contenu" class="form-label">Contenu</label>
-            <textarea class="form-control" id="contenu" [(ngModel)]="cours.contenu" name="contenu" required></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="auteur" class="form-label">Auteur (Étudiant)</label>
-            <select class="form-control" id="auteur" [(ngModel)]="cours.auteur" name="auteur" required>
-              <option value="" disabled>Sélectionner un étudiant</option>
-              <option *ngFor="let etudiant of etudiants" [ngValue]="etudiant">{{ etudiant.nom }} ({{ etudiant.filiere || 'N/A' }})</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="fichierPdf" class="form-label">Fichier PDF (optionnel)</label>
-            <input type="file" class="form-control" id="fichierPdf" accept="application/pdf" (change)="onFileChange($event)">
-          </div>
-          <button type="submit" class="btn btn-primary">Ajouter</button>
-          <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
-        </form>
+      <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
       </div>
+      <form (ngSubmit)="ajouterCours()">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre</label>
+          <input type="text" class="form-control" id="titre" [(ngModel)]="cours.titre" name="titre" required>
+        </div>
+        <div class="mb-3">
+          <label for="contenu" class="form-label">Contenu</label>
+          <textarea class="form-control" id="contenu" [(ngModel)]="cours.contenu" name="contenu" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="auteur" class="form-label">Auteur (Étudiant)</label>
+          <input type="text" class="form-control" [value]="cours.auteur?.nom || 'Utilisateur connecté'" disabled>
+        </div>
+        <div class="mb-3">
+          <label for="fichierPdf" class="form-label">Fichier PDF (optionnel)</label>
+          <input type="file" class="form-control" id="fichierPdf" accept="application/pdf" (change)="onFileChange($event)">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Ajout en cours...' : 'Ajouter' }}
+        </button>
+      </form>
     </div>
   </div>
+</div>

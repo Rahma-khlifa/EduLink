@@ -7,6 +7,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ probleme.titre }}</h5>
       <p class="card-text">{{ probleme.description }}</p>
+      <p class="card-text"><strong>Auteur :</strong> {{ probleme.etudiant?.nom || 'Inconnu' }}</p>
       <button (click)="toggleReponses(probleme.id)" class="btn btn-link">
         {{ showReponses[probleme.id] ? 'Masquer' : 'Afficher' }} les réponses
       </button>

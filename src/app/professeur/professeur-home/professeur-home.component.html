@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <!-- Bouton de déconnexion en haut à droite -->
+  <div class="logout-container">
+    <button (click)="logout()" class="btn-logout">Déconnexion</button>
+  </div>
+    <h2 class="text-center mb-4">Bienvenue, Professeur !</h2>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ajouter un cours</h5>
+            <p class="card-text">Publiez un nouveau cours pour vos étudiants.</p>
+            <a routerLink="/professeur/ajouter-cours" class="btn btn-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulter les cours</h5>
+            <p class="card-text">Voir tous les cours que vous avez publiés.</p>
+            <a routerLink="/professeur/consulter-cours" class="btn btn-primary">Consulter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Répondre à un problème</h5>
+            <p class="card-text">Répondez aux problèmes signalés par les étudiants.</p>
+            <a routerLink="/professeur/consulter-problemes" class="btn btn-primary">Répondre</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Publier une annonce</h5>
+            <p class="card-text">Partagez des informations importantes avec vos étudiants.</p>
+            <a routerLink="/professeur/publier-annonce" class="btn btn-primary">Publier</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulter les annonces</h5>
+            <p class="card-text">Voir toutes les annonces publiées.</p>
+            <a routerLink="/professeur/consulter-annonces" class="btn btn-primary">Consulter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulter les problèmes</h5>
+            <p class="card-text">Examinez les problèmes signalés par les étudiants.</p>
+            <a routerLink="/professeur/consulter-problemes" class="btn btn-primary">Consulter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

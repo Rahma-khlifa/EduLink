@@ -5,3 +5,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
   }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .list-group-item {
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
