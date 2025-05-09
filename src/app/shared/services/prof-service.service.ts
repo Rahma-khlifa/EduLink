@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Cours } from '../models/cours.model';
@@ -36,7 +36,9 @@ export class ProfService {
   }
 
   getProfesseurById(id: number): Observable<Professeur> {
-    return this.http.get<Professeur>(`${this.baseUrl}/${id}`).pipe(
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Professeur>(`${this.baseUrl}/${id}`, { headers }).pipe(
       map(data => new Professeur(data))
     );
   }
@@ -54,7 +56,9 @@ export class ProfService {
     if (file) {
       formData.append('file', file, file.name);
     }
-    return this.http.post<Cours>(`${this.baseUrl}/${professeurId}/cours`, formData).pipe(
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Cours>(`${this.baseUrl}/${professeurId}/cours`, formData, { headers }).pipe(
       map(data => new Cours(data))
     );
   }
@@ -93,15 +97,19 @@ export class ProfService {
   }
 
   publierAnnonce(titre: string, contenu: string): Observable<Annonce> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.getUserId().pipe(
-      switchMap(userId => this.http.post<Annonce>(`${this.baseUrl}/${userId}/annonces`, { titre, contenu }).pipe(
+      switchMap(userId => this.http.post<Annonce>(`${this.baseUrl}/${userId}/annonces`, { titre, contenu }, { headers }).pipe(
         map(data => new Annonce(data))
       ))
     );
   }
 
   getAllAnnonces(): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(`${this.baseUrl}/annonces`).pipe(
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Annonce[]>(`${this.baseUrl}/annonces`, { headers }).pipe(
       map(data => data.map(item => new Annonce(item)))
     );
   }

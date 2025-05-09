@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantService } from '../../shared/services/etudiant-service.service';
-import { Cours } from '../../shared/models/cours.model';
+import { Cours, Auteur } from '../../shared/models/cours.model';
 
 @Component({
   selector: 'app-consulter-cours',
   standalone: false,
-  templateUrl: './consulter-cours.component.html'
+  templateUrl: './consulter-cours.component.html',
+  styleUrls: ['./consulter-cours.component.css']
 })
 export class ConsulterCoursComponent implements OnInit {
   cours: Cours[] = [];
@@ -19,6 +20,12 @@ export class ConsulterCoursComponent implements OnInit {
       next: (data) => {
         this.cours = data;
         console.log('Cours récupérés : ', this.cours);
+        // Fallback si l'auteur est manquant
+        this.cours.forEach(c => {
+          if (!c.auteur) {
+            c.auteur = { nom: 'Inconnu' };
+          }
+        });
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Erreur lors du chargement des cours.';

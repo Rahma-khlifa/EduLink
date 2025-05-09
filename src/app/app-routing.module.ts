@@ -1,52 +1,34 @@
 //app routing module
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConsulterAnnoncesComponent } from './etudiant/consulter-annonces/consulter-annonces.component';
+import { AjouterCoursComponent as EtudiantAjouterCoursComponent } from './etudiant/ajouter-cours/ajouter-cours.component';
+import { ConsulterCoursComponent } from './etudiant/consulter-cours/consulter-cours.component';
+import { PublierProblemeComponent } from './etudiant/publier-probleme/publier-probleme.component';
+import { RepondreProblemeComponent as EtudiantRepondreProblemeComponent } from './etudiant/repondre-probleme/repondre-probleme.component';
 import { LoginComponent } from './login/login.component';
 import { EtudiantHomeComponent } from './etudiant/etudiant-home/etudiant-home.component';
-import { AjouterCoursComponent as EtudiantAjouterCours } from './etudiant/ajouter-cours/ajouter-cours.component';
-import { ConsulterAnnoncesComponent as EtudiantConsulterAnnonces } from './etudiant/consulter-annonces/consulter-annonces.component';
-import { ConsulterCoursComponent as EtudiantConsulterCours } from './etudiant/consulter-cours/consulter-cours.component';
-import { ConsulterProblemesComponent as EtudiantConsulterProblemes } from './etudiant/consulter-problemes/consulter-problemes.component';
-import { PublierProblemeComponent } from './etudiant/publier-probleme/publier-probleme.component';
-import { RepondreProblemeComponent as EtudiantRepondreProbleme } from './etudiant/repondre-probleme/repondre-probleme.component';
-import { ProfesseurHomeComponent } from './professeur/professeur-home/professeur-home.component';
-import { AjouterCoursComponent as ProfesseurAjouterCours } from './professeur/ajouter-cours/ajouter-cours.component';
-import { RepondreProblemeComponent as ProfesseurRepondreProbleme } from './professeur/repondre-probleme/repondre-probleme.component';
-import { PublierAnnonceComponent } from './professeur/publier-annonce/publier-annonce.component';
-import { ConsulterProblemesComponent as ProfesseurConsulterProblemes } from './professeur/consulter-problemes/consulter-problemes.component';
 import { AuthGuard } from './auth.guard';
+import { AjouterCoursComponent as ProfesseurAjouterCoursComponent } from './professeur/ajouter-cours/ajouter-cours.component';
+import { PublierAnnonceComponent } from './professeur/publier-annonce/publier-annonce.component';
+import { RepondreProblemeComponent as ProfesseurRepondreProblemeComponent } from './professeur/repondre-probleme/repondre-probleme.component';
+import { ConsulterProblemesComponent as ProfesseurConsulterProblemesComponent } from './professeur/consulter-problemes/consulter-problemes.component';
+import { ProfesseurHomeComponent } from './professeur/professeur-home/professeur-home.component';
 
 const routes: Routes = [
-  // Routes étudiant
-  {
-    path: 'etudiant/:id',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: EtudiantHomeComponent },
-      { path: 'ajouter-cours', component: EtudiantAjouterCours },
-      { path: 'consulter-annonces', component: EtudiantConsulterAnnonces },
-      { path: 'consulter-cours', component: EtudiantConsulterCours },
-      { path: 'consulter-problemes', component: EtudiantConsulterProblemes },
-      { path: 'publier-probleme', component: PublierProblemeComponent },
-      { path: 'repondre-probleme/:problemeId', component: EtudiantRepondreProbleme }
-    ]
-  },
-  // Routes professeur
-  {
-    path: 'professeur/:id',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: ProfesseurHomeComponent },
-      { path: 'ajouter-cours', component: ProfesseurAjouterCours },
-      { path: 'repondre-probleme/:problemeId', component: ProfesseurRepondreProbleme },
-      { path: 'publier-annonce', component: PublierAnnonceComponent },
-      { path: 'consulter-problemes', component: ProfesseurConsulterProblemes }
-    ]
-  },
-  // Redirection par défaut
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  // Route wildcard pour les erreurs
-  { path: '**', redirectTo: '/login' }
+  { path: '', component: LoginComponent }, // Page initiale
+  { path: 'etudiant', component: EtudiantHomeComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/consulter-annonces', component: ConsulterAnnoncesComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/ajouter-cours', component: EtudiantAjouterCoursComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/consulter-cours', component: ConsulterCoursComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/publier-probleme', component: PublierProblemeComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/repondre-probleme/:problemeId', component: EtudiantRepondreProblemeComponent, canActivate: [AuthGuard] },
+  { path: 'professeur', component: ProfesseurHomeComponent, canActivate: [AuthGuard] },
+  { path: 'professeur/ajouter-cours', component: ProfesseurAjouterCoursComponent, canActivate: [AuthGuard] },
+  { path: 'professeur/publier-annonce', component: PublierAnnonceComponent, canActivate: [AuthGuard] },
+  { path: 'professeur/repondre-probleme/:problemeId', component: ProfesseurRepondreProblemeComponent, canActivate: [AuthGuard] },
+  { path: 'professeur/consulter-problemes', component: ProfesseurConsulterProblemesComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' } // Redirige les routes inconnues vers la page de login
 ];
 
 @NgModule({

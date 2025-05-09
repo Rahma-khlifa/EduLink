@@ -16,7 +16,7 @@ export class ProfesseurHomeComponent implements OnInit {
     private profService: ProfService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
