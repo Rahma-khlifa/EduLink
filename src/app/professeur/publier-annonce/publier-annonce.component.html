@@ -1,29 +1,58 @@
-<div class="container">
-    <h2>Publier une annonce</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group mb-3">
-        <label for="titre">Titre</label>
-        <input
-          type="text"
-          class="form-control"
-          id="titre"
-          [(ngModel)]="annonce.titre"
-          name="titre"
-          required
-        />
+<div class="container py-5">
+  <div class="card shadow-lg mb-5 rounded-3">
+    <div class="card-header py-4 bg-primary text-white rounded-top-3">
+      <h6 class="m-0 font-weight-bold">Publier une Annonce</h6>
+    </div>
+    <div class="card-body p-4">
+      <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="successMessage = ''" aria-label="Close"></button>
       </div>
-      <div class="form-group mb-3">
-        <label for="contenu">Contenu</label>
-        <textarea
-          class="form-control"
-          id="contenu"
-          [(ngModel)]="annonce.contenu"
-          name="contenu"
-          required
-        ></textarea>
+      <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!annonce.titre || !annonce.contenu">
-        Publier
-      </button>
-    </form>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="titre" class="form-label">Titre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="titre"
+            [(ngModel)]="annonce.titre"
+            name="titre"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="contenu" class="form-label">Contenu</label>
+          <textarea
+            class="form-control"
+            id="contenu"
+            [(ngModel)]="annonce.contenu"
+            name="contenu"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="auteur" class="form-label">Auteur (Professeur)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="auteur"
+            [value]="auteurNom"
+            disabled
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary transition-all"
+          [disabled]="isSubmitting || !annonce.titre || !annonce.contenu"
+        >
+          {{ isSubmitting ? 'Publication en cours...' : 'Publier' }}
+        </button>
+      </form>
+    </div>
   </div>
+</div>

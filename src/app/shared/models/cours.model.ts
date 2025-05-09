@@ -1,11 +1,17 @@
 import { Etudiant } from './etudiant.model';
+import { Professeur } from './professeur.model';
+
+export interface Auteur {
+  id?: number;
+  nom: string;
+}
 
 export class Cours {
   id?: number;
   titre: string;
   contenu: string;
   fichierPdf?: Uint8Array; // Changé de string à Uint8Array pour correspondre au byte[] du back-end
-  auteur?: Etudiant;
+  auteur?: Auteur;
 
   constructor(data: any = {}) {
     this.id = data.id;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Cours } from '../models/cours.model';
@@ -155,7 +155,9 @@ export class EtudiantService {
   }
 
   getAnnonces(): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(`${this.baseUrl}/annonces`).pipe(
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Annonce[]>(`${this.baseUrl}/annonces`, { headers }).pipe(
       map(data => data.map(item => new Annonce(item)))
     );
   }

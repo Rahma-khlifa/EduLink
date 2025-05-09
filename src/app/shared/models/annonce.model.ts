@@ -3,11 +3,11 @@ import { Professeur } from './professeur.model';
 
 export class Annonce {
   id?: number;
-  titre: string;
-  contenu: string;
-  datePublication?: string; // Pour LocalDate (ex. "2025-05-01")
+  titre: string = '';
+  contenu: string = '';
+  datePublication?: string; // Format YYYY-MM-DD
   professeurId?: number;
-  professeur?: Professeur;
+  professeur?: Partial<Professeur>;
 
   constructor(data: Partial<Annonce> = {}) {
     this.id = data.id;
@@ -15,10 +15,10 @@ export class Annonce {
     this.contenu = data.contenu || '';
     this.datePublication = data.datePublication;
     this.professeurId = data.professeurId;
-    this.professeur = data.professeur ? new Professeur(data.professeur) : undefined;
+    this.professeur = data.professeur;
   }
 
   isValid(): boolean {
-    return !!this.titre && !!this.contenu && !!this.datePublication;
+    return !!this.titre && !!this.contenu;
   }
 }
