@@ -7,7 +7,6 @@
     <div class="card-body">
       <h5 class="card-title">{{ probleme.titre }}</h5>
       <p class="card-text">{{ probleme.description }}</p>
-      <p class="card-text"><strong>Publié par :</strong> {{ probleme.etudiant?.nom || 'Étudiant inconnu' }}</p>
       <button (click)="toggleReponses(probleme.id)" class="btn btn-link">
         {{ showReponses[probleme.id] ? 'Masquer' : 'Afficher' }} les réponses
       </button>
@@ -19,7 +18,6 @@
             <div>
               <p><strong>Réponse #{{ reponse.id }}</strong></p>
               <p>{{ reponse.contenu }}</p>
-              <p class="text-muted"><strong>Par :</strong> {{ reponse.professeurId ? 'Professeur ' + (reponse.professeurNom || 'Inconnu') : 'Étudiant ' + (reponse.etudiantNom || 'Inconnu') }}</p>
             </div>
           </li>
         </ul>
