@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EtudiantService } from '../../shared/services/etudiant-service.service';
 import { Probleme } from '../../shared/models/probleme.model';
+import { UserService } from '../../shared/services/user.service';
+import { Reponse } from '../../shared/models/reponse.model';
 
 @Component({
   selector: 'app-consulter-problemes',
@@ -12,16 +14,33 @@ export class ConsulterProblemesComponent implements OnInit {
   problemes: Probleme[] = [];
   showReponses: { [key: number]: boolean } = {};
   reponseContenu: string = '';
+  currentUserId: number | null = null;
 
-  constructor(private etudiantService: EtudiantService) {}
+  constructor(
+    private etudiantService: EtudiantService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.etudiantService.getAllProblemes().subscribe({
-      next: (problemes) => {
-        this.problemes = problemes;
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des problèmes', error);
+    this.userService.getUserId().subscribe(userId => {
+      if (userId) {
+        this.currentUserId = userId;
+        this.etudiantService.getAllProblemes().subscribe({
+          next: (problemes) => {
+            this.problemes = problemes.map(probleme => {
+              if (probleme.etudiantId && !probleme.etudiant) {
+                this.etudiantService.getEtudiantById(probleme.etudiantId).subscribe({
+                  next: (etudiant) => (probleme.etudiant = etudiant),
+                  error: (err) => console.error('Erreur chargement étudiant', err)
+                });
+              }
+              return probleme;
+            });
+          },
+          error: (error) => {
+            console.error('Erreur lors du chargement des problèmes', error);
+          }
+        });
       }
     });
   }
@@ -44,20 +63,42 @@ export class ConsulterProblemesComponent implements OnInit {
   }
 
   ajouterReponse(problemeId: number): void {
-    if (this.reponseContenu.trim()) {
-      this.etudiantService.addReponseToProbleme(problemeId, this.reponseContenu).subscribe({
+    if (this.reponseContenu.trim() && this.currentUserId) {
+      this.etudiantService.addReponseToProbleme(problemeId, this.reponseContenu, this.currentUserId).subscribe({
         next: (reponse) => {
           const probleme = this.problemes.find(p => p.id === problemeId);
           if (probleme) {
             if (!probleme.reponses) {
               probleme.reponses = [];
             }
+            reponse.etudiantId = this.currentUserId || 0;
+            reponse.etudiantNom = 'Étudiant ' + this.currentUserId; // À ajuster si tu as une méthode pour récupérer le nom
             probleme.reponses.push(reponse);
             this.reponseContenu = '';
           }
         },
         error: (error) => {
           console.error('Erreur lors de l\'ajout de la réponse', error);
+        }
+      });
+    }
+  }
+
+  canDeleteReponse(probleme: Probleme, reponse: Reponse): boolean {
+    return this.currentUserId === reponse.etudiantId;
+  }
+
+  deleteReponse(problemeId: number, reponseId: number): void {
+    if (this.currentUserId) {
+      this.etudiantService.supprimerReponse(problemeId, reponseId, this.currentUserId).subscribe({
+        next: () => {
+          const probleme = this.problemes.find(p => p.id === problemeId);
+          if (probleme) {
+            probleme.reponses = probleme.reponses?.filter(r => r.id !== reponseId) || [];
+          }
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression de la réponse', error);
         }
       });
     }

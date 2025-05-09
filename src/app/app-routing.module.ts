@@ -14,6 +14,8 @@ import { PublierAnnonceComponent } from './professeur/publier-annonce/publier-an
 import { RepondreProblemeComponent as ProfesseurRepondreProblemeComponent } from './professeur/repondre-probleme/repondre-probleme.component';
 import { ConsulterProblemesComponent as ProfesseurConsulterProblemesComponent } from './professeur/consulter-problemes/consulter-problemes.component';
 import { ProfesseurHomeComponent } from './professeur/professeur-home/professeur-home.component';
+import { ConsulterProblemesComponent as EtudiantConsulterProblemesComponent } from './etudiant/consulter-problemes/consulter-problemes.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, // Page initiale
@@ -23,6 +25,7 @@ const routes: Routes = [
   { path: 'etudiant/consulter-cours', component: ConsulterCoursComponent, canActivate: [AuthGuard] },
   { path: 'etudiant/publier-probleme', component: PublierProblemeComponent, canActivate: [AuthGuard] },
   { path: 'etudiant/repondre-probleme/:problemeId', component: EtudiantRepondreProblemeComponent, canActivate: [AuthGuard] },
+  { path: 'etudiant/consulter-problemes', component: EtudiantConsulterProblemesComponent, canActivate: [AuthGuard] },
   { path: 'professeur', component: ProfesseurHomeComponent, canActivate: [AuthGuard] },
   { path: 'professeur/ajouter-cours', component: ProfesseurAjouterCoursComponent, canActivate: [AuthGuard] },
   { path: 'professeur/publier-annonce', component: PublierAnnonceComponent, canActivate: [AuthGuard] },

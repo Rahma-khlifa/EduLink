@@ -114,11 +114,14 @@ export class EtudiantService {
     );
   }
 
-  addReponseToProbleme(problemeId: number, contenu: string): Observable<Reponse> {
+  addReponseToProbleme(problemeId: number, contenu: string, etudiantId: number): Observable<Reponse> {
     const formData = new FormData();
     formData.append('contenu', contenu);
+    formData.append('etudiantId', etudiantId.toString());
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.getUserId().pipe(
-      switchMap(userId => this.http.post<Reponse>(`${this.baseUrl}/${userId}/problemes/${problemeId}/reponses`, formData).pipe(
+      switchMap(userId => this.http.post<Reponse>(`${this.baseUrl}/${userId}/problemes/${problemeId}/reponses`, formData, { headers }).pipe(
         map(data => new Reponse(data)),
         catchError(error => {
           console.error('Erreur lors de l\'ajout de la réponse', error);
@@ -126,6 +129,12 @@ export class EtudiantService {
         })
       ))
     );
+  }
+
+  supprimerReponse(problemeId: number, reponseId: number, userId: number): Observable<void> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<void>(`${this.baseUrl}/${userId}/problemes/${problemeId}/reponses/${reponseId}`, { headers });
   }
 
   getReponsesByProbleme(problemeId: number): Observable<Reponse[]> {
@@ -137,6 +146,7 @@ export class EtudiantService {
       })
     );
   }
+
 
   demanderRendezVous(rendezVous: RendezVous): Observable<RendezVous> {
     return this.getUserId().pipe(
