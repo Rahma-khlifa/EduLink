@@ -38,7 +38,6 @@
         <p>{{ reponse.contenu }}</p>
         <p class="text-muted"><strong>Par :</strong> {{ reponse.professeurId ? 'Professeur ' + (reponse.professeurNom || 'Inconnu') : 'Étudiant ' + (reponse.etudiantNom || 'Inconnu') }}</p>
       </div>
-      <button *ngIf="reponse.etudiantId === currentUserId" class="btn btn-danger btn-sm" (click)="deleteReponse(reponse.id)">Supprimer</button>
     </li>
   </ul>
 </div>

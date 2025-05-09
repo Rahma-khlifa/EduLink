@@ -21,7 +21,6 @@
               <p>{{ reponse.contenu }}</p>
               <p class="text-muted"><strong>Par :</strong> {{ reponse.professeurId ? 'Professeur ' + (reponse.professeurNom || 'Inconnu') : 'Étudiant ' + (reponse.etudiantNom || 'Inconnu') }}</p>
             </div>
-            <button *ngIf="canDeleteReponse(probleme, reponse)" class="btn btn-danger btn-sm" (click)="deleteReponse(probleme.id, reponse.id)">Supprimer</button>
           </li>
         </ul>
         <form (ngSubmit)="ajouterReponse(probleme.id)">

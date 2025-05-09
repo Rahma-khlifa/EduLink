@@ -88,19 +88,4 @@ export class ConsulterProblemesComponent implements OnInit {
     return this.currentUserId === reponse.etudiantId;
   }
 
-  deleteReponse(problemeId: number, reponseId: number): void {
-    if (this.currentUserId) {
-      this.etudiantService.supprimerReponse(problemeId, reponseId, this.currentUserId).subscribe({
-        next: () => {
-          const probleme = this.problemes.find(p => p.id === problemeId);
-          if (probleme) {
-            probleme.reponses = probleme.reponses?.filter(r => r.id !== reponseId) || [];
-          }
-        },
-        error: (error) => {
-          console.error('Erreur lors de la suppression de la réponse', error);
-        }
-      });
-    }
-  }
 }
