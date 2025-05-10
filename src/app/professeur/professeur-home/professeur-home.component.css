@@ -1,96 +1,141 @@
+/* Conteneur principal */
 .container-fluid {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
   min-height: 100vh;
-  padding: 20px;
-  animation: fadeIn 0.5s ease-in-out;
+  padding: 40px 20px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* Animation de fondu pour le conteneur principal */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Conteneur de la page */
 .container {
-  background-color: white;
-  border-radius: 15px;
+  max-width: 1200px;
+  margin: 40px auto;
   padding: 30px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  animation: slideUp 0.5s ease-in-out;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.8s ease-in-out;
 }
 
+/* Animation de glissement vers le haut */
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.card {
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Titre principal */
+h2.text-center {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.8s ease-in-out;
 }
 
-.animate-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+/* Animation pour le titre */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.card-title {
-  font-size: 1.5rem;
-  color: #333;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: #6c757d;
-  font-family: 'Poppins', sans-serif;
-}
-
-.btn-primary {
-  border-radius: 25px;
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-  border: none;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
-}
-
-.text-primary {
-  color: #4facfe !important;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.fa-3x {
-  color: #4facfe;
-}
-
-/* Style pour le bouton de déconnexion */
+/* Conteneur de déconnexion */
 .logout-container {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+/* Bouton de déconnexion */
+.btn-logout {
+  background: linear-gradient(90deg, #ef4444 0%, #f97316 100%);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+  transition: all 0.4s ease;
+}
+
+/* Effet de survol sur le bouton de déconnexion */
+.btn-logout:hover {
+  background: linear-gradient(90deg, #f97316 0%, #ef4444 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5);
+}
+
+/* Carte */
+.card {
+  border: none;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+}
+
+/* Effet de survol sur la carte */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Corps de la carte */
+.card-body {
+  padding: 25px;
+  text-align: center;
+}
+
+/* Titre de la carte */
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+/* Texte de la carte */
+.card-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
   margin-bottom: 20px;
 }
 
-.btn-logout {
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #ff6b6b 0%, #ff8e53 100%);
-  color: white;
+/* Bouton principal */
+.btn-primary {
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
   border: none;
   border-radius: 25px;
+  padding: 10px 25px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 0.95rem;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+  transition: all 0.4s ease;
 }
 
-.btn-logout:hover {
+/* Effet de survol sur le bouton principal */
+.btn-primary:hover {
+  background: linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Suppression des styles non utilisés */
+.text-primary,
+.fa-3x {
+  display: none;
 }

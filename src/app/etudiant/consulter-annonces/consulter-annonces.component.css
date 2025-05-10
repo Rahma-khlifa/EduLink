@@ -1,50 +1,129 @@
+/* Conteneur principal */
 .container-fluid {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
     min-height: 100vh;
-  }
-  
-  .card {
+    padding: 50px 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animation de fondu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Carte principale */
+.card {
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-  }
-  
-  .card-header {
-    background: linear-gradient(90deg, #007bff, #00c6ff);
-    border-bottom: none;
-  }
-  
-  .card-header h6 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  
-  .annonce-card {
-    background-color: #ffffff;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .annonce-card:hover {
+}
+
+/* Effet de survol sur la carte principale */
+.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  
-  .card-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
-  .transition-all {
-    transition: all 0.3s ease;
-  }
-  
-  .alert {
-    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* En-tête de la carte */
+.card-header {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border-bottom: none;
+    padding: 25px;
+}
+
+/* Titre de l'en-tête */
+.card-header h6 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Corps de la carte */
+.card-body {
+    padding: 40px;
+}
+
+/* Alerte */
+.alert {
+    border-radius: 12px;
     font-size: 0.9rem;
-  }
+    font-family: 'Poppins', sans-serif;
+    padding: 15px;
+    margin-bottom: 25px;
+    animation: slideDown 0.5s ease-in-out;
+    border-left: 5px solid;
+}
+
+/* Animation pour les alertes */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Alerte d'information */
+.alert-info {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: #1e40af;
+    border-left-color: #3b82f6;
+}
+
+/* Alerte d'erreur */
+.alert-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border-left-color: #ef4444;
+}
+
+/* Bouton de fermeture des alertes */
+.btn-close {
+    filter: opacity(0.6);
+    transition: filter 0.3s ease;
+}
+
+/* Effet de survol sur le bouton de fermeture */
+.btn-close:hover {
+    filter: opacity(1);
+}
+
+/* Carte d'annonce */
+.annonce-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Effet de survol sur la carte d'annonce */
+.annonce-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Titre de la carte d'annonce */
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #1e40af;
+    letter-spacing: 0.5px;
+}
+
+/* Texte de la carte */
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-family: 'Poppins', sans-serif;
+    color: #4b5563;
+}
+
+/* Transition générale */
+.transition-all {
+    transition: all 0.3s ease;
+}

@@ -1,113 +1,165 @@
+/* Styles généraux pour le conteneur */
 .container {
     max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-in-out;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+    border: 1px solid rgba(79, 172, 254, 0.1);
 }
 
+/* Animation de fondu pour le conteneur */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.button-group {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    gap: 10px;
+/* Style du titre Welcome to EduLink */
+.welcome-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    animation: slideDown 0.8s ease-in-out;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Animation pour le titre */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Groupe de boutons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 40px; /* Décalage vers le bas */
+    margin-bottom: 40px;
+}
+
+/* Style des boutons */
 button {
-    padding: 12px 25px;
-    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    padding: 12px 30px;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
 }
 
+/* Effet de survol pour les boutons */
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+    transform: translateY(-5px);
+    background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+    box-shadow: 0 8px 20px rgba(37, 117, 252, 0.5);
 }
 
+/* Bouton désactivé */
 button:disabled {
-    background: #cccccc;
+    background: #d1d5db;
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
 }
 
+/* Conteneur des formulaires */
 .form-container {
-    border: 1px solid #e0e6f0;
-    padding: 25px;
+    border: 1px solid #e5e7eb;
+    padding: 30px;
     border-radius: 15px;
-    background: white;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    animation: slideUp 0.5s ease-in-out;
-    margin-bottom: 20px;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    animation: slideUp 0.6s ease-in-out;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
 }
 
+/* Animation pour les formulaires */
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.form-group {
-    margin-bottom: 20px;
+/* Effet de survol pour les formulaires */
+.form-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Groupe de champs de formulaire */
+.form-group {
+    margin-bottom: 25px;
+}
+
+/* Labels des champs */
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
+    margin-bottom: 10px;
+    color: #2d3748;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
+/* Champs de saisie */
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e6f0;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 12px 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
     font-family: 'Poppins', sans-serif;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: #f9fafb;
 }
 
+/* Focus sur les champs de saisie */
 .form-group input:focus {
-    border-color: #4facfe;
+    border-color: #2575fc;
     outline: none;
-    box-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
+    box-shadow: 0 0 12px rgba(37, 117, 252, 0.2);
+    background: #ffffff;
 }
 
+/* Style des alertes */
 .alert {
     padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    margin-bottom: 25px;
+    border-radius: 12px;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 0.9rem;
     animation: fadeAlert 0.5s ease-in-out;
 }
 
+/* Animation pour les alertes */
 @keyframes fadeAlert {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Alerte de succès */
 .alert-success {
-    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-    color: #155724;
-    border-left: 5px solid #28a745;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border-left: 5px solid #10b981;
 }
 
+/* Alerte d'erreur */
 .alert-danger {
-    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-    color: #721c24;
-    border-left: 5px solid #dc3545;
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border-left: 5px solid #ef4444;
 }

@@ -1,44 +1,43 @@
 <div class="container">
-  <h2>Répondre au problème #{{ problemeId }}</h2>
-  <div *ngIf="message" class="alert" [ngClass]="{
+    <h2>Répondre au problème #{{ problemeId }}</h2>
+  
+    <div *ngIf="message" class="alert" [ngClass]="{
       'alert-success': message && message.includes('succès'),
       'alert-danger': message && message.includes('Erreur')
     }">
-    {{ message }}
-  </div>
-  <form [formGroup]="reponseForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="contenu">Votre réponse :</label>
-      <textarea
-        id="contenu"
-        formControlName="contenu"
-        class="form-control"
-        rows="4"
-        placeholder="Saisissez votre réponse ici"
-      ></textarea>
-      <div
-        *ngIf="reponseForm.get('contenu')?.invalid && reponseForm.get('contenu')?.touched"
-        class="text-danger"
-      >
-        Le contenu est requis.
-      </div>
+      {{ message }}
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="reponseForm.invalid">
-      Envoyer la réponse
-    </button>
-  </form>
-  <h3>Réponses existantes</h3>
-  <div *ngIf="reponses.length === 0" class="alert alert-info">
-    Aucune réponse pour ce problème.
-  </div>
-  <ul class="list-group">
-    <li *ngFor="let reponse of reponses" class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <p><strong>Réponse #{{ reponse.id }}</strong></p>
-        <p>{{ reponse.contenu }}</p>
-        <p class="text-muted"><strong>Par :</strong> {{ reponse.professeurId ? 'Professeur ' + (reponse.professeurNom || 'Inconnu') : 'Étudiant ' + (reponse.etudiantNom || 'Inconnu') }}</p>
+  
+    <form [formGroup]="reponseForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="contenu">Votre réponse :</label>
+        <textarea
+          id="contenu"
+          formControlName="contenu"
+          class="form-control"
+          rows="4"
+          placeholder="Saisissez votre réponse ici"
+        ></textarea>
+        <div
+          *ngIf="reponseForm.get('contenu')?.invalid && reponseForm.get('contenu')?.touched"
+          class="text-danger"
+        >
+          Le contenu est requis.
+        </div>
       </div>
-      <button *ngIf="reponse.etudiantId === currentUserId" class="btn btn-danger btn-sm" (click)="deleteReponse(reponse.id)">Supprimer</button>
-    </li>
-  </ul>
-</div>
+      <button type="submit" class="btn btn-primary" [disabled]="reponseForm.invalid">
+        Envoyer la réponse
+      </button>
+    </form>
+  
+    <h3>Réponses existantes</h3>
+    <div *ngIf="reponses.length === 0" class="alert alert-info">
+      Aucune réponse pour ce problème.
+    </div>
+    <ul class="list-group">
+      <li *ngFor="let reponse of reponses" class="list-group-item">
+        <p><strong>Réponse #{{ reponse.id }}</strong> </p>
+        <p>{{ reponse.contenu }}</p>
+      </li>
+    </ul>
+  </div>
