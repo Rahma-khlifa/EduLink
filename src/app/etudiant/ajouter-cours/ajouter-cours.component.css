@@ -1,0 +1,168 @@
+/* Conteneur principal */
+.container-fluid {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animation de fondu pour le conteneur */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Style de la carte */
+.card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet de survol sur la carte */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* En-tête de la carte */
+.card-header {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border-bottom: none;
+    padding: 20px;
+}
+
+/* Titre de l'en-tête */
+.card-header h6 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Corps de la carte */
+.card-body {
+    padding: 30px;
+}
+
+/* Style des alertes */
+.alert {
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 15px;
+    margin-bottom: 25px;
+    animation: slideDown 0.5s ease-in-out;
+    border-left: 5px solid;
+}
+
+/* Animation pour les alertes */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Alerte de succès */
+.alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border-left-color: #10b981;
+}
+
+/* Alerte d'erreur */
+.alert-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border-left-color: #ef4444;
+}
+
+/* Bouton de fermeture des alertes */
+.btn-close {
+    filter: opacity(0.6);
+    transition: filter 0.3s ease;
+}
+
+/* Effet de survol sur le bouton de fermeture */
+.btn-close:hover {
+    filter: opacity(1);
+}
+
+/* Style des champs de formulaire */
+.mb-3 {
+    margin-bottom: 25px !important;
+}
+
+/* Labels des champs */
+.form-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* Champs de saisie */
+.form-control {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    background: #f9fafb;
+    transition: all 0.3s ease;
+}
+
+/* Focus sur les champs de saisie */
+.form-control:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Textarea spécifique */
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Champ désactivé */
+.form-control:disabled {
+    background: #e5e7eb;
+    color: #6b7280;
+}
+
+/* Bouton de soumission */
+.btn-primary {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+    transition: all 0.4s ease;
+}
+
+/* Effet de survol sur le bouton */
+.btn-primary:hover {
+    background: linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Bouton désactivé */
+.btn-primary:disabled {
+    background: #d1d5db;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+}
